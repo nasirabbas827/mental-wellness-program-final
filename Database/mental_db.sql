@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2026 at 08:50 AM
+-- Generation Time: Mar 25, 2026 at 08:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -54,7 +54,7 @@ CREATE TABLE `counselling_sessions` (
   `start_time` time DEFAULT NULL,
   `end_time` time DEFAULT NULL,
   `meet_link` varchar(255) DEFAULT NULL,
-  `approval_status` enum('approved','disapproved') DEFAULT 'disapproved',
+  `approval_status` enum('pending','approved','disapproved') NOT NULL DEFAULT 'pending',
   `status` enum('scheduled','completed','archived') DEFAULT 'scheduled',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -73,7 +73,9 @@ INSERT INTO `counselling_sessions` (`id`, `counsellor_id`, `title`, `session_dat
 (7, 1, 'Conflict Resolution', '2026-02-18', '12:00:00', '13:00:00', 'https://meet.google.com/conflict7', 'approved', 'scheduled', '2026-02-09 06:25:07'),
 (8, 1, 'Building Self-Confidence', '2026-02-19', '15:00:00', '16:00:00', 'https://meet.google.com/confidence8', 'approved', 'scheduled', '2026-02-09 06:25:07'),
 (9, 1, 'Effective Communication', '2026-02-20', '09:30:00', '10:30:00', 'https://meet.google.com/communication9', 'approved', 'scheduled', '2026-02-09 06:25:07'),
-(10, 1, 'Work-Life Balance Tips', '2026-02-21', '11:00:00', '12:00:00', 'https://meet.google.com/worklife10', 'approved', 'scheduled', '2026-02-09 06:25:07');
+(10, 1, 'Work-Life Balance Tips', '2026-02-21', '11:00:00', '12:00:00', 'https://meet.google.com/worklife10', 'approved', 'scheduled', '2026-02-09 06:25:07'),
+(11, 3, 'Prototype Session', '2026-02-23', '21:28:00', '22:28:00', 'http://localhost/fall25/prototypes/mental/counsellor/add_session.php', 'approved', 'scheduled', '2026-02-21 16:28:39'),
+(12, 1, 'dds', '2026-03-25', '12:55:00', '12:55:00', 'http://localhost/fall25/mental/counsellor/add_session.php', 'approved', 'scheduled', '2026-03-25 07:49:14');
 
 -- --------------------------------------------------------
 
@@ -152,7 +154,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role`, `full_name`, `email`, `password`, `phone`, `status`, `preferred_counsellor_id`, `organization`, `age`, `gender`, `specialization`, `qualification`, `experience_years`, `bio`, `created_at`) VALUES
 (1, 'counsellor', 'Counsellor Ali', 'Counsellor@gmail.com', '$2y$10$kpXrYW/VrAb8kKSnzvKkm.x05aO6qa.8yMHOA3QwY78DlEAvh9liC', '03176526827', 'active', NULL, NULL, 23, 'male', 'fdsa', 'MBBS, FCPS', 2, '23fdsa', '2026-02-09 05:58:01'),
-(2, 'participant', 'Participant one', 'participant@gmail.com', '$2y$10$xkx3o1p2pKsUFx8603nEYOhcvIDfHMoNctmgyn1EkDuTaRSu/ChuO', '+923176526823', 'active', 1, 'fdsa', 33, 'female', NULL, NULL, NULL, NULL, '2026-02-09 06:26:56');
+(2, 'participant', 'Participant one', 'participant@gmail.com', '$2y$10$xkx3o1p2pKsUFx8603nEYOhcvIDfHMoNctmgyn1EkDuTaRSu/ChuO', '+923176526823', 'active', 1, 'fdsa', 33, 'female', NULL, NULL, NULL, NULL, '2026-02-09 06:26:56'),
+(3, 'counsellor', 'Con One', 'con@gmail.com', '$2y$10$gLyM1v.MJuQg4g3dl8OwHOuGXq9R8vd0915eOUGcdV82G0A7o6Nqm', '03266029059', 'active', NULL, NULL, 23, 'male', NULL, NULL, NULL, NULL, '2026-02-21 16:27:36');
 
 -- --------------------------------------------------------
 
@@ -247,7 +250,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `counselling_sessions`
 --
 ALTER TABLE `counselling_sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `mood_checkins`
@@ -265,7 +268,7 @@ ALTER TABLE `session_requests`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `wellness_resources`

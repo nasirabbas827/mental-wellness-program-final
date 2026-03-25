@@ -12,14 +12,14 @@ $msg = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title']);
-    $date = $_POST['session_date'];
+    $date = $_POST['session_date']; 
     $start_time = $_POST['start_time'];
     $end_time = $_POST['end_time'];
     $meet_link = trim($_POST['meet_link']);
 
     $stmt = $conn->prepare("INSERT INTO counselling_sessions 
         (counsellor_id, title, session_date, start_time, end_time, meet_link, approval_status) 
-        VALUES (?, ?, ?, ?, ?, ?, 'disapproved')");
+        VALUES (?, ?, ?, ?, ?, ?, 'pending')");
     $stmt->bind_param("isssss", $counsellor_id, $title, $date, $start_time, $end_time, $meet_link);
 
     if ($stmt->execute()) {
@@ -82,3 +82,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 </body>
 </html>
+
+

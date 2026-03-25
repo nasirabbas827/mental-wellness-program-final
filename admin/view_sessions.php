@@ -102,6 +102,7 @@ $result = $stmt->get_result();
                             <select name="approval_status" class="form-control mb-1 mr-1">
                                 <option value="approved" <?= $row['approval_status']=='approved'?'selected':'' ?>>Approved</option>
                                 <option value="disapproved" <?= $row['approval_status']=='disapproved'?'selected':'' ?>>Disapproved</option>
+                                <option value="pending" <?= $row['approval_status']=='pending'?'selected':'' ?>>Pending</option>
                             </select>
 
                             <select name="status" class="form-control mb-1 mr-1">
